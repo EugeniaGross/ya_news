@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views import generic
@@ -102,3 +103,20 @@ class CommentUpdate(CommentBase, generic.UpdateView):
 class CommentDelete(CommentBase, generic.DeleteView):
     """Удаление комментария."""
     template_name = 'news/delete.html'
+
+
+class Search(generic.ListView):
+    template_name = 'news/home.html'
+    context_object_name = 'news'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return News.objects.filter(
+            Q(title__icontains=self.request.GET.get('search_title')) |
+            Q(text__icontains=self.request.GET.get('search_title'))
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_title'] = self.request.GET.get('search_title')
+        return context

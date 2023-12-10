@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 
 from django.conf import settings
 from django.db import models
@@ -7,7 +7,7 @@ from django.db import models
 class News(models.Model):
     title = models.CharField(max_length=50)
     text = models.TextField()
-    date = models.DateField(default=datetime.today)
+    date = models.DateField(default=date.today)
 
     class Meta:
         ordering = ('-date',)

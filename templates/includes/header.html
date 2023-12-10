@@ -5,6 +5,9 @@
         <span class="text-danger"><b>Ya</b></span>News
       </a>
       <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'api:news-list' %}">API YaTube</a>
+        </li>
         {% if user.is_authenticated %}
           <li class="align-self-center">
             Пользователь: {{ user.username }}
