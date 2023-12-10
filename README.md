@@ -14,8 +14,6 @@ cd ya_news
 
 Cоздать и активировать виртуальное окружение
 
-Cоздать и активировать виртуальное окружение
-
 Для Windows:
 
 ```
@@ -75,14 +73,16 @@ python manage.py loaddata news.json
 ```
 # Примеры:
 Получение новости api/v1/news/{id}/
+```
 {
   "id": 0,
   "title": "string",
   "text": "string",
   "date": "2019-08-24"
 }
-
+```
 Получение комментария api/v1/news/{news_id}/comment/{id}/
+```
 {
   "id": 0,
   "news": 0,
@@ -91,6 +91,6 @@ python manage.py loaddata news.json
   "created": "2019-08-24T14:15:22Z",
   "right": "string"
 }
-
-Используемые технологии
+```
+# Используемые технологии
 Django, Django Rest Framework, Redoc
